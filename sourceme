@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+export LDP_GEM5_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export GEM5_SE_KERNELS="${LDP_GEM5_ROOT}/workloads/bin"
+export GEM5_SE_DATASET="${LDP_GEM5_ROOT}/workloads/dataset"

@@ -1,0 +1,7 @@
+tasks=8/8
+application=graph_bfs_queue datasets=2 geomean_speedup=3.323570
+application=graph_mst_queue datasets=2 geomean_speedup=2.043227
+application=graph_sssp_queue datasets=2 geomean_speedup=2.130527
+application=database_hj_m datasets=1 geomean_speedup=2.368694
+application=database_gb_m datasets=1 geomean_speedup=1.344000
+overall_geomean_speedup=2.254061

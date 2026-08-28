@@ -1,0 +1,10 @@
+task,nopf_restored_simSeconds,ldp_restored_simSeconds,speedup_ldp_over_nopf,status
+graph_bfs_queue_ss,0.028478,0.021348,1.333989,ok
+graph_bfs_queue_cg10,0.013338,0.001826,7.304491,ok
+graph_mst_queue_ss,0.027810,0.018996,1.463992,ok
+graph_mst_queue_cg10,0.013397,0.004874,2.748666,ok
+graph_sssp_queue_ss,0.024740,0.020304,1.218479,ok
+graph_sssp_queue_cg10,0.013376,0.004519,2.959947,ok
+database_hj_m,0.044747,0.018891,2.368694,ok
+database_gb_m,0.066637,0.040479,1.646212,ok
+network_ipv4_m,0.005785,0.002453,2.358337,ok

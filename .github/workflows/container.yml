@@ -1,0 +1,63 @@
+name: Publish artifact container
+
+on:
+  workflow_dispatch:
+    inputs:
+      checkpoint_url:
+        description: "Public URL of checkpoints.tar.zst"
+        required: true
+        type: string
+      checkpoint_sha256:
+        description: "SHA-256 of checkpoints.tar.zst"
+        required: true
+        type: string
+      image_tag:
+        description: "Immutable image tag"
+        required: true
+        default: "micro26-final"
+        type: string
+      dockerfile:
+        description: "Dockerfile used for the published image"
+        required: true
+        default: "Dockerfile"
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download checkpoint bundle
+        env:
+          CHECKPOINT_URL: ${{ inputs.checkpoint_url }}
+          CHECKPOINT_SHA256: ${{ inputs.checkpoint_sha256 }}
+        run: |
+          curl --fail --location "$CHECKPOINT_URL" --output checkpoints.tar.zst
+          echo "$CHECKPOINT_SHA256  checkpoints.tar.zst" | sha256sum --check -
+          tar --use-compress-program=unzstd -xf checkpoints.tar.zst
+          test -f checkpoints/graph_bfs_queue_ss/cpt.*/m5.cpt
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ${{ inputs.dockerfile }}
+          push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          tags: ghcr.io/xjtuiair-cag/ldp-gem5:${{ inputs.image_tag }}
+          labels: |
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}

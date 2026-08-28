@@ -1,0 +1,16 @@
+.git
+.gitignore
+.github
+build
+dist
+m5out
+m5out_*
+results
+smoke_results
+*.log
+__pycache__
+*.pyc
+.venv
+.vscode
+.idea
+ext/**/.github

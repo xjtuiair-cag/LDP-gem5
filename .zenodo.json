@@ -1,0 +1,58 @@
+{
+  "title": "LDP-gem5: MICRO 2026 Artifact for the Loop-Decoupled Prefetcher",
+  "description": "Source code, fixed workloads, checkpoints, Docker image, expected results, and evaluation workflow for the MICRO 2026 paper Loop-Decoupled Prefetcher for Linked Data Structure.",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "bsd-3-clause",
+  "version": "micro26-final",
+  "publication_date": "2026-08-28",
+  "creators": [
+    {
+      "name": "Zong, Pengchen",
+      "affiliation": "Xi'an Jiaotong University"
+    },
+    {
+      "name": "Fu, Gelin",
+      "affiliation": "Xi'an Jiaotong University"
+    },
+    {
+      "name": "Luo, Qiang",
+      "affiliation": "Xi'an Jiaotong University"
+    },
+    {
+      "name": "Kong, Yijiang",
+      "affiliation": "Xi'an Jiaotong University"
+    },
+    {
+      "name": "Guo, Chenzhun",
+      "affiliation": "Xi'an Jiaotong University"
+    },
+    {
+      "name": "Zhao, Wenzhe",
+      "affiliation": "Xi'an Jiaotong University"
+    },
+    {
+      "name": "Ren, Pengju",
+      "affiliation": "Xi'an Jiaotong University"
+    },
+    {
+      "name": "Xia, Tian",
+      "affiliation": "Xi'an Jiaotong University"
+    }
+  ],
+  "keywords": [
+    "gem5",
+    "hardware prefetching",
+    "linked data structures",
+    "loop decoupling",
+    "artifact evaluation",
+    "MICRO 2026"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/xjtuiair-cag/LDP-gem5",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

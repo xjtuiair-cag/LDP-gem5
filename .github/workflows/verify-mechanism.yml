@@ -1,0 +1,58 @@
+name: Verify loop-decoupling ablation
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_digest:
+        description: "GHCR image digest (sha256:...)"
+        required: true
+        type: string
+      run_profile:
+        description: "AE run profile"
+        required: true
+        default: fast
+        type: choice
+        options:
+          - fast
+          - full
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  mechanism:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pull immutable image
+        env:
+          IMAGE: ghcr.io/xjtuiair-cag/ldp-gem5@${{ inputs.image_digest }}
+        run: docker pull "$IMAGE"
+
+      - name: Run baseline and loop-decoupling ablation
+        env:
+          IMAGE: ghcr.io/xjtuiair-cag/ldp-gem5@${{ inputs.image_digest }}
+        run: |
+          mkdir results
+          /usr/bin/time -v docker run --rm \
+            --user "$(id -u):$(id -g)" -e HOME=/tmp \
+            -v "$PWD/results:/results" \
+            "$IMAGE" \
+            --run-profile "${{ inputs.run_profile }}" --jobs 4
+
+      - name: Validate mechanism results
+        run: |
+          python3 scripts/validate_mechanism.py \
+            --actual "results/${{ inputs.run_profile }}/analysis/mechanism_summary.csv" \
+            --expected "expected/${{ inputs.run_profile }}/mechanism_summary.csv"
+          test -s "results/${{ inputs.run_profile }}/analysis/mechanism.png"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mechanism-results
+          path: results
+          retention-days: 30

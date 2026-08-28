@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this artifact, please cite the MICRO 2026 paper and the archived artifact."
+title: "LDP-gem5: MICRO 2026 Artifact for the Loop-Decoupled Prefetcher"
+type: software
+version: "micro26-final"
+date-released: "2026-08-28"
+authors:
+  - family-names: Zong
+    given-names: Pengchen
+  - family-names: Fu
+    given-names: Gelin
+  - family-names: Luo
+    given-names: Qiang
+  - family-names: Kong
+    given-names: Yijiang
+  - family-names: Guo
+    given-names: Chenzhun
+  - family-names: Zhao
+    given-names: Wenzhe
+  - family-names: Ren
+    given-names: Pengju
+  - family-names: Xia
+    given-names: Tian
+repository-code: "https://github.com/xjtuiair-cag/LDP-gem5"
+license: BSD-3-Clause
+keywords:
+  - gem5
+  - hardware prefetching
+  - linked data structures
+  - loop decoupling
+  - artifact evaluation

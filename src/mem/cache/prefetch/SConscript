@@ -1,0 +1,17 @@
+# -*- mode:python -*-
+
+Import('*')
+
+SimObject('Prefetcher.py', sim_objects=[
+    'BasePrefetcher', 'QueuedPrefetcher',
+    'StridePrefetcherHashedSetAssociative', 'StridePrefetcher',
+    'LDPPrefetcher'])
+
+Source('base.cc')
+Source('queued.cc')
+Source('stride.cc')
+Source('ldp.cc')
+
+DebugFlag('LDP')
+DebugFlag('POINTER')
+DebugFlag('PfTimeliness')

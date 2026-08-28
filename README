@@ -1,0 +1,4 @@
+LDP-gem5 build metadata.
+
+This file is consumed by SConstruct when embedding gem5 version information.
+User-facing project documentation is in README.md.
